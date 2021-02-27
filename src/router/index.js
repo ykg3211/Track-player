@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import openlayers from '@/view/openlayers.vue';
+import index from '@/view/index.vue';
 
 Vue.use(Router);
 
@@ -8,12 +8,12 @@ export default new Router({
 	routes: [
 		{
 			path: '*',
-			redirect: '/openlayers'
+			redirect: '/'
 		},
 		{
 			path: '/',
-			name: 'openlayers',
-			component: openlayers
+			name: 'index',
+			component: index
 		}
 	]
 });

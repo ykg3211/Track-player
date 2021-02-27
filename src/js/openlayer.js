@@ -40,7 +40,7 @@ export default class map {
     this.view = new View({
       projection: 'EPSG:4326',
       center: [120.164839,30.228857],
-      zoom: 11,
+      zoom: 14,
       crossOrigin: '',
     })
     this.map = new Map({
@@ -113,6 +113,10 @@ export default class map {
     this.map.on(event, callback);
   }
 
+  initPaint(...attrs){  // 
+    this._initPaint(...attrs);
+  }
+
 
   // 视角移动到（）
   _viewMoveTo(location) {
@@ -124,12 +128,14 @@ export default class map {
 
   // 添加整条路
   _addPath(allPath, redPath) {
-    this.animation.path = allPath;
-    this._addLines('allPath', allPath);
-    redPath.forEach(item => {
+    this.animation.path = allPath;  //设置动画的基本路径参数
+    this._addLines('allPath', allPath);  //添加行驶过的浅绿色的线路
+    redPath.forEach(item => {     //添加  拥堵路段
       this._addLines('red', item);
     })
-    this._addPoint('point', allPath[0]);
+    this._addPoint('point', allPath[0]);  //添加起始位置的小圆圈
+    // this._addPoint('point', allPath[0]);  //添加终止位置的图标   还需要资源
+    this._addLines('green', allPath.slice(this._findCoor(location, allPath), allPath.length)); //添加未行驶的绿色路径
   }
 
   // 添加线路  如果是 green-未行驶的则赋值到this.greenLine
@@ -201,7 +207,8 @@ export default class map {
       })
     );
 
-    this._addLines('green', path.slice(this._findCoor(location, path), path.length));
+    this._viewMoveTo(location);
+
     this._judgeExistLayer(layerName, newFeature, '#B5F5D6');
   }
   _removeLayer(layerName) {
@@ -272,6 +279,11 @@ export default class map {
     index = index === 0 ? 1 : index;
     this.animation.currentLocation = this.animation.path[index - 1];
     this.animation.locationIndex = index - 1;
+
+    // 锁定视角
+    if(this.animation.viewLock) {
+      this.viewMoveTo(this.animation.currentLocation)
+    }
   }
   // 开始动画
   _startAnimation() {
@@ -283,7 +295,7 @@ export default class map {
     }
     
     this.animation.animationTimer = setInterval(() => {
-      this.animation.locationIndex += this.animation.speed;
+      this.animation.locationIndex += this.animation.speed; //主要的步长逻辑
 
       if(this.animation.locationIndex >= this.animation.path.length) {
         this._stopAnimation();
@@ -293,10 +305,7 @@ export default class map {
         return;
       } // 判断倍速放映时是否超出进度条
 
-      this.animation.time = this._locationToTime(this.animation.locationIndex, this.animation.path.length - 1); //主要的放映逻辑
-      if(this.animation.viewLock) {
-        this.viewMoveTo(this.animation.currentLocation)
-      }
+      this.animation.time = this._locationToTime(this.animation.locationIndex, this.animation.path.length - 1); //主要的渲染逻辑
 
       if((this.animation.locationIndex + this.animation.speed) >= this.animation.path.length) {
         this._stopAnimation();
@@ -352,7 +361,7 @@ export default class map {
         stroke: new Stroke({
           color: color || colors[name] || 'white',
           lineCap: name == 'red' ? 'square' : 'round',
-          width: 7,
+          width: 4,
         }),
       })
       newLayer.setStyle(lineStyle);
@@ -428,5 +437,46 @@ export default class map {
         this._forward();
       }
     });
+  }
+
+  //=================
+  _initPaint() {
+
+    
+    var source = new VectorSource();
+    var vector = new VectorLayer({
+      source: source,
+      style: new Style({
+        fill: new Fill({
+          color: 'rgba(255, 255, 255, 0.2)',
+        }),
+        stroke: new Stroke({
+          color: '#ffcc33',
+          width: 2,
+        }),
+        image: new CircleStyle({
+          radius: 7,
+          fill: new Fill({
+            color: '#ffcc33',
+          }),
+        }),
+      }),
+    });
+    this.map.addLayer(vector);
+    
+    var modify = new Modify({ source: source });
+    this.map.addInteraction(modify);
+
+    var draw, snap;
+
+    // function addInteractions() {
+      draw = new Draw({
+        source: source,
+        type: 'Polygon',
+      });
+      this.map.addInteraction(draw);
+      snap = new Snap({ source: source });
+      this.map.addInteraction(snap);
+    // }
   }
 }

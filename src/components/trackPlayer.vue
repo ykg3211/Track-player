@@ -1,44 +1,42 @@
 <template>
-  <div class="box">
-    <div class="player">
-      <div
-        class="main"
-        ref="rootmap"
-        id="map"
-        @contextmenu.prevent="contextmenu()"
-      >
+  <div class="player">
+    <div
+      class="main"
+      ref="rootmap"
+      id="map"
+      @contextmenu.prevent="contextmenu()"
+    >
+    </div>
+    <div class="blank"></div>
+    <div class="toolBar">
+      <div class="slider">
+        <el-slider
+          v-model="timeValue"
+          :show-tooltip="false"
+          style="height:10px"
+        ></el-slider>
       </div>
-      <div class="blank"></div>
-      <div class="toolBar">
-        <div class="slider">
-          <el-slider
-            v-model="timeValue"
-            :show-tooltip="false"
-            style="height:10px"
-          ></el-slider>
-        </div>
-        <div class="btn_sum">
-          <span
-            class="stop"
-            v-if="isPlay"
-            @click="handlePlay"
-          ></span>
-          <span
-            class="start"
-            v-if="!isPlay"
-            @click="handlePlay"
-          ></span>
-          <span
-            class="back"
-            @click="backPlay"
-          ></span>
-          <span @click="changeSpeed">{{speed}}X</span>
-          <!-- <span class="speed"></span> -->
-          <span
-            class="forward"
-            @click="forwardPlay"
-          ></span>
-        </div>
+      <div class="btn_sum">
+        <span
+          class="stop"
+          v-if="isPlay"
+          @click="handlePlay"
+        ></span>
+        <span
+          class="start"
+          v-if="!isPlay"
+          @click="handlePlay"
+        ></span>
+        <span
+          class="back"
+          @click="backPlay"
+        ></span>
+        <span @click="changeSpeed">{{speed}}X</span>
+        <!-- <span class="speed"></span> -->
+        <span
+          class="forward"
+          @click="forwardPlay"
+        ></span>
       </div>
     </div>
   </div>
@@ -48,11 +46,13 @@
 /* eslint-disable */
 import { colors, vehicle, car, path } from '../js/config';
 import map from '../js/openlayer.js';
+import { toStringXY } from 'ol/coordinate';
+
 var events = require("events");
 var eventEmitter = new events.EventEmitter();
 
 export default {
-  name: 'Maptalks',
+  name: 'trackPlayer',
   components: {
   },
   data() {
@@ -78,8 +78,8 @@ export default {
   methods: {
     init() {
       this.map = new map('map');
-      this.map.initAnimation(true);
-      this.map.addPath(path, [[[120.304839, 30.158857], [120.394839, 30.158857]]]);
+      this.map.initAnimation(false);
+      this.map.addPath(this.creatPath(), []);
       this.map.addVehicle('vehicle', vehicle, [120.164839, 30.168857]);
       this.eventListen();
     },
@@ -91,6 +91,19 @@ export default {
       this.map.getEventEmitter().on('switchPlay', () => {
         that.handlePlay();
       });
+    },
+    creatPath() {
+      let start = [120.164839, 30.168857];
+      let path = [start];
+      for (let i = 0; i < 100; i++) {
+        let x = (Math.random() / 100) - 0.005;
+        let y = (Math.random() / 100) - 0.005;
+        let temp = [path[i][0] + x, path[i][1] + y];
+        temp = toStringXY(temp, 6).split(', ');
+        temp = [parseFloat(temp[0]), parseFloat(temp[1])];
+        path.push(temp);
+      }
+      return path;
     },
     contextmenu() {
       this.map.stopAnimation();
@@ -132,11 +145,8 @@ export default {
   left: 0px;
 }
 .player {
-  width: 700px;
-  height: 500px;
-  border: 1px solid;
-  overflow: hidden;
-  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   .blank {
