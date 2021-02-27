@@ -32,7 +32,6 @@
           @click="backPlay"
         ></span>
         <span @click="changeSpeed">{{speed}}X</span>
-        <!-- <span class="speed"></span> -->
         <span
           class="forward"
           @click="forwardPlay"
@@ -44,12 +43,9 @@
 
 <script>
 /* eslint-disable */
-import { colors, vehicle, car, path } from '../js/config';
+import { vehicle } from '../js/config';
 import map from '../js/openlayer.js';
 import { toStringXY } from 'ol/coordinate';
-
-var events = require("events");
-var eventEmitter = new events.EventEmitter();
 
 export default {
   name: 'trackPlayer',

@@ -1,25 +1,15 @@
 /* eslint-disable */
-import { colors, path, zIndex } from './config';
+import { colors, zIndex } from './config';
 
 import 'ol/ol.css';
 import { Map, View } from 'ol';
 import TileArcGISRest from 'ol/source/TileArcGISRest';
-// import TileLayer from 'ol/layer/Tile';
 import Feature from 'ol/Feature';
-import Circle from 'ol/geom/Circle';
-// import Polygon from 'ol/geom/Polygon';
 import Point from 'ol/geom/Point';
-import {fromLonLat, get} from 'ol/proj';
 import LineString from 'ol/geom/LineString';
 import {Vector as VectorSource} from 'ol/source';
-import {Icon, Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
+import {Icon, Circle as CircleStyle, Stroke, Style} from 'ol/style';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
-import {Draw, Modify, Select, Snap} from 'ol/interaction';
-import MousePosition from 'ol/control/MousePosition';
-import Text from 'ol/style/Text';
-import {defaults as defaultControls} from 'ol/control';
-import {createStringXY, toStringXY} from 'ol/coordinate';
-import Overlay from 'ol/Overlay';
 
 var events = require("events");
 var eventEmitter = new events.EventEmitter(); //用来和vue组件通信
@@ -458,136 +448,5 @@ export default class map {
         this._forward();
       }
     });
-  }
-
-  //=================
-  // 绘制
-  _initPaint() {
-    var source = new VectorSource();
-    var newLayer = new VectorLayer({
-      className: 'paint',
-      source: source,
-      style: new Style({
-        fill: new Fill({
-          color: 'rgba(255, 255, 255, 0.2)',
-        }),
-        stroke: new Stroke({
-          color: '#ffcc33',
-          width: 2,
-        }),
-        image: new CircleStyle({
-          radius: 7,
-          fill: new Fill({
-            color: '#ffcc33',
-          }),
-        }),
-      }),
-    });
-    this.map.addLayer(newLayer);
-    this.layers.push(newLayer);
-
-    var modify = new Modify({ source: source });
-    this.map.addInteraction(modify);
-
-    
-    var draw, snap;
-
-    draw = new Draw({
-      source: source,
-      type: 'Polygon',
-    });
-    this.map.addInteraction(draw);
-    snap = new Snap({ source: source });
-    this.map.addInteraction(snap);
-
-    
-    modify.on('modifyend', (e) => {
-      console.log(e)
-      // this._drawCircle(e.feature.geometryChangeKey_.target.flatCoordinates);
-    })
-    draw.on('drawend', (e) => {
-      this._drawCircle(e.feature.getGeometry().getCoordinates()[0]);
-    })
-  }
-  _drawCircle(coordinates){
-    this.paint.pointSource = new VectorSource();
-    coordinates.forEach((item, index) => {
-      if(index === coordinates.length - 1) {
-        return
-      }
-      var newFeature = new Feature({
-        geometry: new Point(item),
-        name: 'point'
-      });
-      newFeature.setStyle(
-        new Style({
-          text: new Text({
-            text: '123'
-          }),
-        })
-      );
-      this.paint.pointSource.addFeature(newFeature)
-    })
-    
-    var newLayer = new VectorLayer({
-      className: 'pointSum',
-      source: this.paint.pointSource,
-    })
-
-    var index = -1; // 用来判断该layer是否已经存在的值
-    this.layers.forEach((item, i) => {
-      if (item.className_ === name) {
-        index = i;
-      }
-    })
-
-    if(index == -1) {
-      this.map.addLayer(newLayer);
-      this.layers.push(newLayer);
-    } else {
-      var tempSource = this.layers[index].getSource();
-      tempSource.addFeature(newFeature)
-      this.layers[index].setSource(tempSource);
-    }
-  }
-
-  
-  _mouseMoveEvent() {
-    var that = this;
-    //地图中鼠标悬浮移动事件
-    this.map.on('pointermove', function(evt) {
-      // var pixel = that.map.getEventPixel(evt.originalEvent); // 如果需要覆盖到任何元素 则可以放开
-      // that._overlayMove(evt.coordinate, pixel)  // 如果需要覆盖到任何元素 则可以放开
-      that._overlayMove(evt.coordinate)
-    })
-  }
-  _addOverlay(center){
-    var overlay = document.createElement('p');
-    overlay.style.display = "block";
-    overlay.setAttribute('class', 'overlay_text')
-    //此处的overlayLayer要是全局变量，其他的函数内要用到
-    this.overlayLayer = new Overlay({
-      element: overlay,
-      position: center,
-      positioning: 'top-left',
-      stopEvent: false
-    });
-    this.map.addOverlay(this.overlayLayer); 
-  }
-  _overlayMove(coorC,pixel){
-    if(!this.overlayLayer){
-      this._addOverlay(coorC)
-    }
-
-    this.overlayLayer.getElement().innerHTML = '指示弹窗里的内容'
-    this.overlayLayer.setPosition(coorC)
-
-    // var feature = this.map.forEachFeatureAtPixel(pixel, function (feature) {  // 如果需要覆盖到任何元素 则可以放开
-    //   return feature;
-    // });
-    // if (feature) {
-    //   this.overlayLayer.getElement().innerHTML = '指示弹窗里的内容'
-    //   this.overlayLayer.setPosition(coorC)
-    // }
   }
 }

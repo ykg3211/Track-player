@@ -1,18 +1,7 @@
 <template>
   <div class="box">
-    <div style="margin: -30px 0px 30px 0px">
-      <el-radio-group v-model="type">
-        <el-radio :label="1">轨迹回放</el-radio>
-        <el-radio :label="2">绘制</el-radio>
-      </el-radio-group>
-    </div>
     <div class="window">
-      <keep-alive v-if="type === 1">
-        <trackPlayer></trackPlayer>
-      </keep-alive>
-      <keep-alive v-if="type === 2">
-        <painting></painting>
-      </keep-alive>
+      <trackPlayer></trackPlayer>
     </div>
   </div>
 </template>
@@ -20,27 +9,11 @@
 <script>
 /* eslint-disable */
 import trackPlayer from '../components/trackPlayer.vue';
-import painting from '../components/painting.vue';
 
 export default {
-  name: 'Maptalks',
+  name: 'Openlayers',
   components: {
     trackPlayer,
-    painting
-  },
-  data() {
-    return {
-      type: 2
-    };
-  },
-  mounted() {
-
-  },
-  watch: {
-
-  },
-  methods: {
-
   }
 };
 </script>
