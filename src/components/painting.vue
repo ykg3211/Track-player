@@ -31,7 +31,8 @@ export default {
     init() {
       this.map = new map('map');
 
-      this.map.initPaint();
+      // this.map.initPaint();
+      this.map._mouseMoveEvent();
     },
   }
 };
@@ -69,5 +70,10 @@ export default {
       background-color: rgb(224, 224, 224);
     }
   }
+}
+/deep/ .overlay_text {
+  background-color: rgba(235, 235, 235, 0.445);
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 </style>
