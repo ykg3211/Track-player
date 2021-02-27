@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Common/Windows/common_windows_unfold</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M1.35355339,7.35355339 C1.15829124,7.54881554 0.841708755,7.54881554 0.646446609,7.35355339 C0.451184464,7.15829124 0.451184464,6.84170876 0.646446609,6.64644661 L6.64644661,0.646446609 C6.84170876,0.451184464 7.15829124,0.451184464 7.35355339,0.646446609 L13.3535534,6.64644661 C13.5488155,6.84170876 13.5488155,7.15829124 13.3535534,7.35355339 C13.1582912,7.54881554 12.8417088,7.54881554 12.6464466,7.35355339 L7,1.70710678 L1.35355339,7.35355339 Z M1.35355339,13.3535534 C1.15829124,13.5488155 0.841708755,13.5488155 0.646446609,13.3535534 C0.451184464,13.1582912 0.451184464,12.8417088 0.646446609,12.6464466 L6.64644661,6.64644661 C6.84170876,6.45118446 7.15829124,6.45118446 7.35355339,6.64644661 L13.3535534,12.6464466 C13.5488155,12.8417088 13.5488155,13.1582912 13.3535534,13.3535534 C13.1582912,13.5488155 12.8417088,13.5488155 12.6464466,13.3535534 L7,7.70710678 L1.35355339,13.3535534 Z" id="path-1"></path>
+    </defs>
+    <g id="Common/Windows/common_windows_unfold" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <rect id="Rectangle" stroke="#979797" fill="#D8D8D8" opacity="0" x="0.5" y="0.5" width="29" height="29"></rect>
+            <g id="2_gray/1_alpha/#B(hsb0\#000)" transform="translate(8.000000, 8.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#000000" transform="translate(7.000000, 7.000000) scale(1, -1) translate(-7.000000, -7.000000) " xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

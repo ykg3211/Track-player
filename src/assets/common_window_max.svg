@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>01_Common_Btn/1_Common/common_window_max</title>
+    <defs>
+        <path d="M11,1 L11,1 L11,11 L1,11 L1,1 L11,1 L11,1 Z M11,0 L1,0 C0.4,0 0,0.4 0,1 L0,11 C0,11.6 0.4,12 1,12 L11,12 C11.6,12 12,11.6 12,11 L12,1 C12,0.4 11.6,0 11,0 L11,0 Z" id="path-1"></path>
+    </defs>
+    <g id="01_Common_Btn/1_Common/common_window_max" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Common/Windows/common_windows_max">
+            <rect id="Rectangle-path" opacity="0.2" x="0" y="0" width="24" height="24"></rect>
+            <g id="Color" transform="translate(6.000000, 6.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#000000" fill-rule="nonzero" opacity="0" xlink:href="#path-1"></use>
+                <g id="Group" mask="url(#mask-2)">
+                    <g transform="translate(-6.000000, -6.000000)">
+                        <rect id="hsb_fill" fill="#000000" fill-rule="nonzero" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
