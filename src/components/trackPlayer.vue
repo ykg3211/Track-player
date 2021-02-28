@@ -76,7 +76,7 @@ export default {
       this.map = new map('map');
       this.map.initAnimation(false);
       this.map.addPath(this.creatPath(), []);
-      this.map.addVehicle('vehicle', vehicle, [120.164839, 30.168857]);
+      this.map.addVehicle('vehicle', 0);
       this.eventListen();
     },
     eventListen() {

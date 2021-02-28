@@ -29,7 +29,8 @@ export default class map {
       animationTimer: null,
       viewLock: false,//动画的时候是否要锁定镜头
       locationIndex: -1, //车辆位置在路径数组中的index
-      time: 0 //时间进度条中的值  (1/100)
+      time: 0, //时间进度条中的值  (1/100)
+      rotation: 0 // 车辆方向
     }
 
     this.paint = {
@@ -122,7 +123,7 @@ export default class map {
   _viewMoveTo(location) {
     this.view.animate({
       center: location,
-      duration: 0,
+      duration: 100,
     });
   }
 
@@ -187,29 +188,87 @@ export default class map {
     return circle;
   }
 
+  // 绘制车辆的圆圈
+  _createVehicleCircleCanvas() { //aaffaa
+    var circle = document.createElement('canvas');
+    circle.setAttribute('id', "vehileCircle");
+    var ctx=circle.getContext("2d");
+
+    ctx.strokeStyle = 'rgba(148, 255, 148, 0.4)'
+    ctx.beginPath();
+    ctx.arc(22,22,20,0,2*Math.PI);
+    ctx.fillStyle = "rgba(148, 255, 148, 0.4)";
+    ctx.fill();
+
+    ctx.strokeStyle = '#20ff3e'
+    ctx.beginPath();
+    ctx.arc(22,22,6,0,2*Math.PI);
+    ctx.fillStyle = "#20ff3e";
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(22, 9);
+    ctx.lineTo(19, 14);
+    ctx.lineTo(25, 14);
+    ctx.fill();
+
+    ctx.stroke();
+    return circle;
+  }
+
    // 添加车辆小圆点到路线上，并且渲染出绿色的未行驶的路线
-  _addVehicle(layerName, url, location) {
+   _addVehicle(layerName, index) {
+    var location = this.animation.path[index];
     this.vehilce = new Point(location);
     this.animation.currentLocation = location;
     var newFeature = new Feature({
       geometry: this.vehilce,
       name: layerName
     });
+    this.animation.rotation = new Icon({
+      anchor: [0.5, 0.5],
+      anchorXUnits: 'fraction',
+      anchorYUnits: 'fraction',
+      img: this._createVehicleCircleCanvas(),
+      imgSize: [44,44]
+    });
     newFeature.setStyle(
       new Style({
-        image: new Icon({
-          anchor: [0.5, 0.5],
-          anchorXUnits: 'fraction',
-          anchorYUnits: 'fraction',
-          src: url,
-          size: [15,15]
-        }),
+        image: this.animation.rotation
       })
     );
+    this.animation.locationIndex = index;
 
     this._viewMoveTo(location);
 
     this._judgeExistLayer(layerName, newFeature, '#B5F5D6');
+  }
+  _rotateVehicle(index) {
+    if(index < this.animation.path.length - 1) {
+      let x = this.animation.path[index];
+      let y = this.animation.path[index + 1];
+      this.animation.rotation.setRotation(this._getRotation(x,y));
+    }
+  }
+  _getRotation(coor_1, coor_2) {
+    var PI = Math.PI;
+    if(coor_2[0] > coor_1[0] && coor_2[1] > coor_1[1]) { // 第一象限
+      return Math.atan((coor_2[0] - coor_1[0]) / (coor_2[1] - coor_1[1]));
+    } else if(coor_2[0] < coor_1[0] && coor_2[1] > coor_1[1]) { // 第二象限
+      return 2 * PI - Math.atan((coor_1[0] - coor_2[0]) / (coor_2[1] - coor_1[1]));
+    } else if(coor_2[0] < coor_1[0] && coor_2[1] < coor_1[1]) { // 第三象限
+      return PI + Math.atan((coor_1[0] - coor_2[0]) / (coor_1[1] - coor_2[1]));
+    } else if(coor_2[0] > coor_1[0] && coor_2[1] < coor_1[1]) { // 第四象限
+      return PI / 2 + Math.atan((coor_1[1] - coor_2[1]) / (coor_2[0] - coor_1[0]));
+    } else if(coor_2[0] === coor_1[0] && coor_2[1] > coor_1[1]) { // y轴正半轴
+      return 0;
+    } else if(coor_2[0] < coor_1[0] && coor_2[1] === coor_1[1]) { // x轴负半轴
+      return PI * 1.5;
+    } else if(coor_2[0] === coor_1[0] && coor_2[1] < coor_1[1]) { // y轴负半轴
+      return PI;
+    } else if(coor_2[0] > coor_1[0] && coor_2[1] === coor_1[1]) { // x轴正半轴
+      return PI / 2;
+    }
   }
   _removeLayer(layerName) {
     this.vehilce = null;
@@ -336,7 +395,7 @@ export default class map {
       this.animation.locationIndex = this._findCoor(this.animation.currentLocation, this.animation.path);
     }
     this.animation.locationIndex -= (this.animation.speed * 1);  // 每一步步长
-    this.animation.locationIndex = this.animation.locationIndex < 0 ? 0 : this.animation.locationIndex;
+    this.animation.locationIndex = this.animation.locationIndex <= 0 ? 0 : this.animation.locationIndex;
     this.animation.time = this._locationToTime(this.animation.locationIndex, this.animation.path.length - 1); //主要的渲染逻辑
   }
   // 前进10%
@@ -345,7 +404,7 @@ export default class map {
       this.animation.locationIndex = this._findCoor(this.animation.currentLocation, this.animation.path);
     }
     this.animation.locationIndex += (this.animation.speed * 1);  // 每一步步长
-    this.animation.locationIndex = this.animation.locationIndex > this.animation.path.length ? this.animation.path.length - 1 : this.animation.locationIndex;
+    this.animation.locationIndex = this.animation.locationIndex >= this.animation.path.length ? this.animation.path.length - 1 : this.animation.locationIndex;
     this.animation.time = this._locationToTime(this.animation.locationIndex, this.animation.path.length - 1); //主要的渲染逻辑
   }
 
@@ -426,6 +485,22 @@ export default class map {
         that._vehicleMoveToIndex(v);
         eventEmitter.emit("freshTime", v);
         timeValue = v;
+      }
+    })
+    var locationIndex = 0;
+    var sameValue = -1;
+    Object.defineProperty(this.animation, 'locationIndex', {
+      enumerable: true, //可否遍历
+      configurable: true, //可否修改
+      get: function() {
+        return locationIndex;
+      },
+      set: function(v) {
+        locationIndex = v;
+        if(sameValue !== v) { // 手动加一个防抖，
+          that._rotateVehicle(v);
+          sameValue = v;
+        }
       }
     })
   }
