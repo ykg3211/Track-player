@@ -32,7 +32,7 @@ export default {
   .window {
     width: 700px;
     height: 500px;
-    border: 1px solid;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.22), 0 0 6px rgba(0, 0, 0, 0.04);
     overflow: hidden;
     position: relative;
   }

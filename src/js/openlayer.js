@@ -10,6 +10,8 @@ import LineString from 'ol/geom/LineString';
 import {Vector as VectorSource} from 'ol/source';
 import {Icon, Circle as CircleStyle, Stroke, Style} from 'ol/style';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
+import Overlay from 'ol/Overlay';
+
 
 var events = require("events");
 var eventEmitter = new events.EventEmitter(); //用来和vue组件通信
@@ -113,12 +115,7 @@ export default class map {
   on(event, callback){  // 监听事件
     this.map.on(event, callback);
   }
-
-  initPaint(...attrs){  // 
-    this._initPaint(...attrs);
-  }
-
-
+  
   // 视角移动到（）
   _viewMoveTo(location) {
     this.view.animate({
@@ -135,7 +132,6 @@ export default class map {
       this._addLines('red', item);
     })
     this._addPoint('point', allPath[0]);  //添加起始位置的小圆圈
-    // this._addPoint('point', allPath[0]);  //添加终止位置的图标   还需要资源
     this._addLines('green', allPath.slice(this._findCoor(location, allPath), allPath.length)); //添加未行驶的绿色路径
   }
 
@@ -194,16 +190,22 @@ export default class map {
     circle.setAttribute('id', "vehileCircle");
     var ctx=circle.getContext("2d");
 
-    ctx.strokeStyle = 'rgba(148, 255, 148, 0.4)'
+    ctx.strokeStyle = 'rgba(43, 169, 243, 0.2)'
     ctx.beginPath();
     ctx.arc(22,22,20,0,2*Math.PI);
-    ctx.fillStyle = "rgba(148, 255, 148, 0.4)";
+    ctx.fillStyle = "rgba(43, 169, 243, 0.2)";
     ctx.fill();
 
-    ctx.strokeStyle = '#20ff3e'
+    ctx.strokeStyle = 'white'
+    ctx.beginPath();
+    ctx.arc(22,22,7,0,2*Math.PI);
+    ctx.fillStyle = "white";
+    ctx.fill();
+
+    ctx.strokeStyle = '#2ba9f3'
     ctx.beginPath();
     ctx.arc(22,22,6,0,2*Math.PI);
-    ctx.fillStyle = "#20ff3e";
+    ctx.fillStyle = "#2ba9f3";
     ctx.fill();
 
     ctx.beginPath();
@@ -242,6 +244,11 @@ export default class map {
     this._viewMoveTo(location);
 
     this._judgeExistLayer(layerName, newFeature, '#B5F5D6');
+
+    var overlay = document.createElement('p');
+    overlay.style.display = "block";
+    overlay.setAttribute('class', 'speedTip');
+    this._addOverlay(1, overlay, location);
   }
   _rotateVehicle(index) {
     if(index < this.animation.path.length - 1) {
@@ -304,6 +311,30 @@ export default class map {
       })
     );
     this._judgeExistLayer(layerName, newFeature, '#B5F5D6');
+  }
+  _addOverlay(type, el, center){
+    let newOverlay = new Overlay({
+      element: el,
+      position: center,
+      positioning: type == 1 ? 'center-left' : 'top-left',
+      stopEvent: false
+    });
+
+    if(type === 1) {
+      this.animation.overlay = newOverlay;
+      this.map.addOverlay(this.animation.overlay);
+
+      this._speedOverlayMove(this.animation.locationIndex);
+    } else {
+      this.paint.overlay = newOverlay;
+      this.map.addOverlay(this.paint.overlay);
+    }
+  }
+  _speedOverlayMove(index) {
+    if(this.animation.overlay) {
+      this.animation.overlay.getElement().innerHTML = `${index}km/s`;
+      this.animation.overlay.setPosition(this.animation.path[index]);
+    }
   }
 
   // ======================================
@@ -498,7 +529,10 @@ export default class map {
       set: function(v) {
         locationIndex = v;
         if(sameValue !== v) { // 手动加一个防抖，
-          that._rotateVehicle(v);
+          setTimeout(() => {
+            that._rotateVehicle(v);
+            that._speedOverlayMove(v);
+          }, 100);
           sameValue = v;
         }
       }

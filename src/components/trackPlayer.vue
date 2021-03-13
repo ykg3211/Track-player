@@ -74,7 +74,7 @@ export default {
   methods: {
     init() {
       this.map = new map('map');
-      this.map.initAnimation(false);
+      this.map.initAnimation(true);
       this.map.addPath(this.creatPath(), []);
       this.map.addVehicle('vehicle', 0);
       this.eventListen();
@@ -145,6 +145,24 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
+  /deep/ .speedTip {
+    margin-left: 22px;
+    background-color: #f5f5f4;
+    border-radius: 3px;
+    padding: 3px 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.32), 0 0 6px rgba(0, 0, 0, 0.04);
+  }
+  /deep/ .speedTip::before {
+    content: "";
+    border-style: solid;
+    border-width: 5px 5px 5px 5px;
+    border-color: transparent #f5f5f4 transparent transparent;
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    left: 13px;
+    top: 8px;
+  }
   .blank {
     width: 100%;
     height: 30px;
