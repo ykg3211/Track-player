@@ -201,7 +201,7 @@ export default {
       justify-content: center;
       align-items: center;
       .stop {
-        background-image: url("../assets/common_window_max.svg");
+        background-image: url("../assets/stop.png");
         width: 25px;
         height: 25px;
         background-size: 100% 100%;

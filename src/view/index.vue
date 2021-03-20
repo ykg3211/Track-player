@@ -30,8 +30,8 @@ export default {
   top: 0px;
   left: 0px;
   .window {
-    width: 700px;
-    height: 500px;
+    width: 1300px;
+    height: 800px;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.22), 0 0 6px rgba(0, 0, 0, 0.04);
     overflow: hidden;
     position: relative;
