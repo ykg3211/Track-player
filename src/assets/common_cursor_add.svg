@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>11_Common_Cursor/common_cursor_add</title>
+    <g id="11_Common_Cursor/common_cursor_add" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(0.000000, 1.000000)" fill="#FFFFFF" id="Group_5" stroke="#333333" stroke-width="1.2">
+            <g>
+                <polygon id="Line" stroke-linecap="round" stroke-linejoin="round" points="0.6 0.611111111 0.6 16.5 3.97463291 12.8962014 7.02021215 18.5937485 9.15767433 17.3702366 6.16491285 11.795889 10.8190026 11.795889"></polygon>
+                <path d="M19.2011392,10.3777778 L19.7987573,14.0436115 L22.8055229,14.0444444 L23.4,17.1248437 L19.7987573,17.7326392 L19.8,20.8058282 L16.7988608,21.4 L16.1987574,17.7326392 L13.1944771,17.7333333 L12.6,14.6529341 L16.1987574,14.0436115 L16.2,10.9719495 L19.2011392,10.3777778 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

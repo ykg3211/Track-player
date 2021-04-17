@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>03_Common_Arrow/1_Common/common_angle_left</title>
+    <defs>
+        <path d="M16.278273,4.87371002 L8.20208616,11.9888449 L16.278058,19.1108086 C16.4844494,19.2942676 16.5030397,19.6103038 16.3195807,19.8166952 C16.1361217,20.0230866 15.8200855,20.0416769 15.6136941,19.8582179 L7.20138812,12.4372904 C7.17549832,12.413353 7.17549832,12.413353 7.15156084,12.3874632 C6.93141003,12.1397935 6.95371846,11.7605501 7.20138812,11.5403993 L15.6139091,4.1263007 C15.8203005,3.94284169 16.1363367,3.96143205 16.3197957,4.16782344 C16.5032547,4.37421482 16.4846643,4.69025101 16.278273,4.87371002 Z" id="path-1"></path>
+    </defs>
+    <g id="03_Common_Arrow/1_Common/common_angle_left" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Color" fill-opacity="0.7" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+    </g>
+</svg>

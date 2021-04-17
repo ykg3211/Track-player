@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="92px" height="56px" viewBox="0 0 92 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>car-nor-1</title>
+    <defs>
+        <path d="M29,11 L72,11 C80.2842712,11 87,17.7157288 87,26 C87,34.2842712 80.2842712,41 72,41 L29,41 L29,41 L29,11 Z" id="path-1"></path>
+        <filter x="-12.1%" y="-16.7%" width="124.1%" height="146.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.12 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter2"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter2" result="shadowBlurOuter2"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter2" result="shadowMatrixOuter2"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="shadowMatrixOuter2"></feMergeNode>
+            </feMerge>
+        </filter>
+        <linearGradient x1="77.0423061%" y1="47.5180565%" x2="-2.78160638%" y2="99.133126%" id="linearGradient-3">
+            <stop stop-color="#000000" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#000000" stop-opacity="0.13" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#3ABDFD" offset="0%"></stop>
+            <stop stop-color="#0271D5" offset="100%"></stop>
+        </linearGradient>
+        <path d="M17.2555322,8 C18.3035496,8 19.240327,8.65367127 19.6019707,9.63731463 L20.7069805,12.6428571 L20.873,12.875 L22.2784091,12.875 C22.7271405,12.875 23.0909091,13.2387686 23.0909091,13.6875 L23.0909091,14 C23.0909091,14.2761424 22.8670515,14.5 22.5909091,14.5 L21.9307892,14.500217 C22.0007271,14.7081964 22.0363983,14.9275494 22.0350669,15.1496789 L22.0059581,20.0059939 C22.0026618,20.5559294 21.5559215,21 21.005976,21 L20,21 C19.4477153,21 19,20.5522847 19,20 L19,19 L10,19 L10.0433906,19.9545923 C10.0684685,20.5063074 9.64154477,20.9738906 9.08982968,20.9989685 C9.07470356,20.9996561 9.05956376,21 9.04442202,21 L7.99402396,21 C7.44407853,21 6.99733824,20.5559294 6.99404192,20.0059939 L6.9651435,15.1847744 C6.96373549,14.9498704 7.00370423,14.7182508 7.08166274,14.5000045 L6.5,14.5 C6.22385763,14.5 6,14.2761424 6,14 L6,13.6875 C6,13.2387686 6.36376864,12.875 6.8125,12.875 L8.205,12.875 L8.38392857,12.6428571 L9.48893834,9.63731463 C9.85058205,8.65367127 10.7873595,8 11.8353769,8 L17.2555322,8 Z M10,15 C9.44771525,15 9,15.4477153 9,16 C9,16.5522847 9.44771525,17 10,17 C10.5522847,17 11,16.5522847 11,16 C11,15.4477153 10.5522847,15 10,15 Z M19,15 C18.4477153,15 18,15.4477153 18,16 C18,16.5522847 18.4477153,17 19,17 C19.5522847,17 20,16.5522847 20,16 C20,15.4477153 19.5522847,15 19,15 Z M17.3952772,9.625 L11.6753729,9.625 C11.2643579,9.625 10.899822,9.87570523 10.7485917,10.2492794 L10.7097886,10.3649099 L10.1697091,12.369955 C10.158287,12.4123595 10.1525013,12.4560841 10.1525013,12.5 C10.1525013,12.7454599 10.3293764,12.9496084 10.5626256,12.9919443 L10.6525013,13 L18.3643052,13 C18.4039913,13 18.4435363,12.9952751 18.4821053,12.9859251 C18.7206555,12.9280947 18.8773854,12.7081012 18.8635761,12.4714435 L18.8502303,12.3822 L18.3671273,10.3894 C18.2583903,9.94085987 17.8568093,9.625 17.3952772,9.625 Z" id="path-5"></path>
+        <filter x="-20.5%" y="-19.2%" width="141.0%" height="153.8%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.00392156863   0 0 0 0 0.439215686   0 0 0 0 0.835294118  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="0.0%" y="0.0%" width="100.0%" height="100.0%" filterUnits="objectBoundingBox" id="filter-7">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="car-nor-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Rectangle" fill-rule="nonzero">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#FFFFFF" xlink:href="#path-1"></use>
+        </g>
+        <g id="编组" transform="translate(14.000000, 11.000000)">
+            <path d="M14.5,38 C16.5,36.3333333 19,35.3333333 22,35 C26.5,34.5 32,33 34.5,30 C37,27 26.5,13 22,19.5 C19,23.8333333 16.5,30 14.5,38 Z" id="路径" fill="url(#linearGradient-3)"></path>
+            <path d="M14.5,0.499937816 C18.3670821,0.499937816 21.8683727,2.03964626 24.4026447,4.53023258 C26.9337428,7.0176996 28.5,10.453917 28.5,14.249987 C28.5,20.285246 25.6389104,22.7744914 22.4826059,25.561388 C19.677814,28.0379123 16.6402961,30.7345844 14.9318077,36.0389378 C12.3355471,30.6367511 9.28298218,27.9616655 6.48006188,25.5108796 C3.33686867,22.7625696 0.5,20.3174036 0.5,14.249987 C0.5,10.453917 2.06625722,7.0176996 4.59735527,4.53023258 C7.13162733,2.03964626 10.6329179,0.499937816 14.5,0.499937816 Z" id="Fill-1" stroke-opacity="0.12" stroke="#000000" fill="url(#linearGradient-4)"></path>
+            <g id="形状结合" fill-rule="nonzero">
+                <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                <use fill="#FFFFFF" xlink:href="#path-5"></use>
+            </g>
+            <ellipse id="椭圆形备份-2" fill-opacity="0.1" fill="#000000" opacity="0.500672" filter="url(#filter-7)" cx="14.5" cy="38" rx="5.5" ry="2"></ellipse>
+            <ellipse id="椭圆形" fill-opacity="0.2" fill="#000000" cx="14.5" cy="38" rx="2.5" ry="1"></ellipse>
+        </g>
+    </g>
+</svg>

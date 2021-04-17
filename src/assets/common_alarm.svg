@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>01_Common_Btn/1_Common/common_alarm</title>
+    <defs>
+        <path d="M13,6 L12,6 L12,4 L13,4 L13,6 Z M9.249,6.464 L7.835,5.05 L7.128,5.757 L8.542,7.171 L9.249,6.464 L9.249,6.464 Z M17.249,5.757 L16.542,5.05 L15.128,6.464 L15.835,7.171 L17.249,5.757 L17.249,5.757 Z M20,19.5 L20,19.5 C20,19.224 19.776,19 19.5,19 L5.5,19 C5.224,19 5,19.224 5,19.5 L5,19.5 C5,19.776 5.224,20 5.5,20 L19.5,20 C19.776,20 20,19.776 20,19.5 Z M18,12.5 L18,16.575 C18,16.545 18,16.641 18,17.026 C18,18.052 17,18 17,18 C16.373,18 13.387,18 11,18 L10,18 C9.04,18 8.28,18 8,18 C7,18 7,16.937 7,16.937 C7,16.849 7,16.709 7,16.525 C7,15.336 7,12.5 7,12.5 C7,9.445 9.482,6.969 12.5,6.969 C15.518,6.969 18,9.445 18,12.5 Z M17,12.5 C17,10 14.969,7.974 12.5,7.974 C10.031,7.974 8,10.001 8,12.5 L8,17 L10,17 L10,12 L11,12 L11,17 L17,17 L17,12.5 Z" id="path-1"></path>
+    </defs>
+    <g id="01_Common_Btn/1_Common/common_alarm" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Color" fill-opacity="0.7" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+    </g>
+</svg>
