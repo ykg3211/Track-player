@@ -3,21 +3,11 @@
     <div class="trackMap">
       <trackPlayer ref="trackPlayer"></trackPlayer>
     </div>
-    <div class="buttonList">
-      <button
-        class="bu start"
-        @click="start"
-      >开始</button>
-      <button
-        class="bu clear"
-        @click="clear"
-      >清空</button>
-    </div>
   </div>
 </template>
 
 <script>
-import trackPlayer from '../components/trackPlayer.vue';
+import trackPlayer from '../view/components/sop.vue';
 import { toStringXY } from 'ol/coordinate';
 
 export default {

@@ -121,10 +121,12 @@ export default {
       speed: 1,
       speedList: [1, 2, 4],
       startTime: 0,
-      timeChange: false
+      timeChange: false,
+      testa: 1
     };
   },
   created() {
+    console.log(123)
     let setting = localStorage.getItem('playSetting');
     if (setting) {
       this.form = JSON.parse(setting);
@@ -132,6 +134,12 @@ export default {
     }
   },
   watch: {
+    testa: {
+      immediate: true,
+      handler: () => {
+        console.log(1)
+      }
+    },
     speed(v) {
       this.map.changeSpeed(v);
     },
